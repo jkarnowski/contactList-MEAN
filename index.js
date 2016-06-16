@@ -14,21 +14,28 @@ fs.readFile('users.json', {encoding: 'utf8'}, function(error, data){
 		})
 })
 
+// look in teh view dir for files named jade
+app.set('views', './views')
+app.set('view engine', 'jade')
+
 // when you get an HTTP GET, call this function
 app.get('/', function(req, res){
-	var buffer = ''
-
-	users.forEach(function(user){
-		buffer += '<a href="/' + user.username + ' ">' + user.name.full + '</a><br>'
-	})
-	res.send(buffer)
+	res.render('index', {users: users})
+	
+	// BEFORE USING VIEWS
+	// var buffer = ''
+	// users.forEach(function(user){
+	// 	buffer += '<a href="/' + user.username + ' ">' + user.name.full + '</a><br>'
+	// })
+	// res.send(buffer)
 })
 
-app.get(/big.*/, function(req, res, next){
-	console.log('BIG USER')
-	// this route handler is done, go to the next route
-	next()
-})
+// EXAMPLE W REGEXP
+// app.get(/big.*/, function(req, res, next){
+// 	console.log('BIG USER')
+// 	// this route handler is done, go to the next route
+// 	next()
+// })
 
 
 app.get('/:username', function(req, res){
