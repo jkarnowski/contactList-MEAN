@@ -49,8 +49,9 @@ app.get('/', function(req, res){
 
 app.get('/:username', function(req, res){
 	var username = req.params.username
+	var user = getUser(username)
 	res.render('user', {
-		username: username
+		username: user,
 		address: user.location
 	})
 })
