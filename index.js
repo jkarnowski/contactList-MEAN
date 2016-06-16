@@ -4,6 +4,7 @@ var app = express()
 var fs = require('fs')
 var _ = require('lodash')
 var engines = require('consolidate')
+
 var users = []
 
 fs.readFile('users.json', {encoding: 'utf8'}, function(error, data){
@@ -15,11 +16,13 @@ fs.readFile('users.json', {encoding: 'utf8'}, function(error, data){
 		})
 })
 
+// reads handlebards templating
 app.engine('hbs', engines.handlebars)
+
 
 // look in teh view dir for files named jade
 app.set('views', './views')
-app.set('view engine', 'jade')
+app.set('view engine', 'hbs')
 
 
 // when you get an HTTP GET, call this function
