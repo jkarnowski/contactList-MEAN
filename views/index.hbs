@@ -7,11 +7,13 @@
 <body>
 
 	<h1>Handlebars template</h1>
-	<ul>
-		{{#each users as |user|}}
-		<li><a href="/{{user.username}}">{{user.name.full}}</a></li>
+	{{#each users as |user|}}
+	<div>
+		{{!-- if we had static images for each user: --}}
+		{{!-- <img src="/profilepics/{{user.username}}_sm.jpg" alt=""> --}}
+		<a href="/{{user.username}}">{{user.name.full}}</a>
 		{{/each}}
-	</ul>
+	</div>
 
 </body>
 </html>

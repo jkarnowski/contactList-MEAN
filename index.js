@@ -24,6 +24,8 @@ app.engine('hbs', engines.handlebars)
 app.set('views', './views')
 app.set('view engine', 'hbs')
 
+// TO ADD STATIC IMAGES FROM A FOLDER
+// app.use('/profilepics', express.static('images'))
 
 // when you get an HTTP GET, call this function
 app.get('/', function(req, res){
@@ -47,7 +49,10 @@ app.get('/', function(req, res){
 
 app.get('/:username', function(req, res){
 	var username = req.params.username
-	res.send(username)
+	res.render('user', {
+		username: username
+		address: user.location
+	})
 })
 
 
